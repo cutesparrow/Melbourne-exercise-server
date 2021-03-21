@@ -9,6 +9,7 @@ For the full list of settings and their values, see https://docs.djangoproject.c
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +24,7 @@ SECRET_KEY = 'upjdx5u02q+kdch_@hrzbow$m!ak&6()9%9xv--y#c6&pzl#%e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['18.221.111.132']
+ALLOWED_HOSTS = ['www.melbournesafeexercise.tk']
 
 
 # Application definition

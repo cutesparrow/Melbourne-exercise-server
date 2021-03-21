@@ -24,7 +24,7 @@ SECRET_KEY = 'upjdx5u02q+kdch_@hrzbow$m!ak&6()9%9xv--y#c6&pzl#%e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.melbournesafeexercise.tk']
+ALLOWED_HOSTS = ['www.melbournesafeexercise.tk','127.0.0.1']
 
 
 # Application definition
@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'gym.apps.GymConfig',
     'django_crontab',
 ]
 

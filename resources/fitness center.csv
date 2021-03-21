@@ -1,0 +1,4 @@
+Name,Address,Suburb,Postcode,State,Latitude,Longitude,Limitation,Images
+Corporate Fitness Club,321 Flinders Ln,Melbourne,3000,VIC,-37.8173544216869,144.963667913509,10,"['gym01','gym02']"
+Docklands Outdoor Gym,888 Collins St,Melbourne,3000,VIC,-37.820291377565,144.942234327002,15,"['gym11','gym12']"
+Fernwood Melbourne City,475 Flinders Lane,Melbourne,3000,VIC,-37.8192922256914,144.958096742344,20,"['gym21','gym22']"

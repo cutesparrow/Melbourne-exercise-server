@@ -1,7 +1,6 @@
-from django.shortcuts import render
 from math import radians, cos, sin, asin, sqrt
 import json
-from gym.models import Gym,Image
+from gym.models import Gym
 # Create your views here.
 from django.http import HttpResponse
 

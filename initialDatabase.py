@@ -1,7 +1,5 @@
-from django.db import migrations, models
-import django.db.models.deletion
 import pandas as pd
-from gym.models import Gym,Image
+from gym.models import Gym
 
 
 def load_initial_gym_data():

@@ -1,5 +1,18 @@
 from django.db import models
 
+
+from enum import Enum
+
+
+
+class WeekDay(Enum):
+    monday = "Mon"
+    tuesday = "Tue"
+    wednesday = "Wed"
+    thursday = "Thu"
+    friday = "Fri"
+    saturday = "Sat"
+    sunday = "Sun"
 # Create your models here.
 class Gym(models.Model):
     gym_name = models.CharField(max_length=30)
@@ -53,8 +66,27 @@ class Playground(models.Model):
     def __str__(self):
         return self.playground_name
 
-class playgroundImage(models.Model):
+class PlaygroundImage(models.Model):
     playground = models.ForeignKey(Playground,on_delete=models.CASCADE)
     image_name = models.CharField(max_length=10)
     def __str__(self):
         return self.image_name + ' ' + self.playground.playground_name
+
+class Sensor(models.Model):
+    sensor_coordinate_lat = models.FloatField()
+    sensor_coordinate_long = models.FloatField()
+    sensor_name = models.CharField(max_length=20)
+
+class DaySensor(models.Model):
+    sensor = models.ForeignKey(Sensor,on_delete=models.CASCADE)
+    day = models.CharField(max_length=3,choices=[(tag.value,tag.name) for tag in WeekDay])
+    hours = models.IntegerField()
+
+class HourlyRoadSituation(models.Model):
+    day_sensor = models.ForeignKey(DaySensor,on_delete=models.CASCADE)
+    hour = models.IntegerField()
+    high = models.IntegerField()
+    low = models.IntegerField()
+    average = models.IntegerField()
+
+

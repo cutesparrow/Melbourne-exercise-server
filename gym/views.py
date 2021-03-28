@@ -84,6 +84,8 @@ class ResponseGym:
 def findAllRelatedSensor(gym_lat,gym_long,user_lat,user_long):
     today = datetime.now().weekday()
     tomorrow = today + 1
+    if tomorrow == 7:
+        tomorrow = 0
     today = getWeekDay(today)
     tomorrow = getWeekDay(tomorrow)
     big_lat,small_lat = (gym_lat,user_lat) if gym_lat > user_lat else (user_lat,gym_lat)
@@ -118,7 +120,7 @@ def findAllRelatedSensor(gym_lat,gym_long,user_lat,user_long):
         sensor_list = Sensor.objects.filter(pk=close_sensor)
     return sensor_list
 
-def getSituationList(sensors,weekday):
+def getSituationList(sensors,weekday,distance):
     response = RoadSituation(day=weekday, situation=[], hours=24)
     number_sensors = len(sensors)
     for hour in range(24):
@@ -132,20 +134,23 @@ def getSituationList(sensors,weekday):
             low += instance.low
             high += instance.high
             average += instance.average
-        low = int(low / number_sensors)
-        high = int(high / number_sensors)
-        average = int(average / number_sensors)
+        low = int(int(low / number_sensors)*distance)
+        high = int(int(high / number_sensors)*distance)
+        average = int(int(average / number_sensors)*distance)
         hourlySituation = OneHourRoadSituation(hour=hour, high=high, low=low, average=average)
         response.situation.append(hourlySituation)
     return response
 
-def getRoadSituationData(sensors):
+def getRoadSituationData(sensors,distance):
     weekday = datetime.now().weekday()
     today = getWeekDay(weekday)
-    tomorrow = getWeekDay(weekday+1)
-    today = getSituationList(sensors,today)
+    if today == 'sunday':
+        tomorrow = 'monday'
+    else:
+        tomorrow = getWeekDay(weekday+1)
+    today = getSituationList(sensors,today,distance)
     today.situation = [i.__dict__ for i in today.situation]
-    tomorrow = getSituationList(sensors,tomorrow)
+    tomorrow = getSituationList(sensors,tomorrow,distance)
     tomorrow.situation = [i.__dict__ for i in tomorrow.situation]
     return [today,tomorrow]
 
@@ -157,11 +162,12 @@ def getRoadSituation(request):
         user_long = float(request.GET.get('user_long',default=0))
         gym_id = request.GET.get('gym_id',default=0)
         gym = Gym.objects.get(pk = gym_id)
+        distance = haversine(gym.gym_coordinate_lat,gym.gym_coordinate_long,user_lat,user_long)
     else:
         return HttpResponseNotFound()
     if user_lat == 0 or user_long == 0 or gym_id == 0:
         return HttpResponseNotFound()
     sensor_list = findAllRelatedSensor(gym.gym_coordinate_lat,gym.gym_coordinate_long,user_lat,user_long)
-    result = getRoadSituationData(sensor_list)
+    result = getRoadSituationData(sensor_list,distance)
 
     return HttpResponse(json.dumps({'list':[i.__dict__ for i in result]}),content_type='application/json')

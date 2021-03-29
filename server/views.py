@@ -50,7 +50,7 @@ def exerciseTips(request):
     return HttpResponse(result.content)
 
 def homePage(request):
-    return HttpResponse('Hello, this is the backend for our Melbourne safe exercise ios application.')
+    return HttpResponse('Hello, this is the backend for our Melbourne safe exercise ios application.\n Your can not access other content of this site if you keep using Browser')
 
 @require_GET
 @valid_request

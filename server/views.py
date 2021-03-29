@@ -8,14 +8,13 @@ from random import choice
 from functools import wraps
 from gym.views import valid_request
 from django.views.decorators.http import require_GET
-from django.contrib.staticfiles.utils import get_files
-from django.contrib.staticfiles.storage import StaticFilesStorage
+from django.contrib.staticfiles.storage import staticfiles_storage
+from django.conf import settings
 
 @require_GET
 @valid_request
 def poster(request):
-    s = StaticFilesStorage()
-    fileList = list(get_files(s, location=''))
+    fileList = file_name_listdir(settings.STATIC_URL)
     try:
         name = choice(fileList)
     except Exception as e:

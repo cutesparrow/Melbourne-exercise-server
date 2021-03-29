@@ -5,7 +5,12 @@ import os
 from random import choice
 from gym.models import *
 from random import choice
+from functools import wraps
+from gym.views import valid_request
+from django.views.decorators.http import require_GET
 
+@require_GET
+@valid_request
 def poster(request):
     fileList = file_name_listdir('./static')
     try:
@@ -26,6 +31,8 @@ def file_name_listdir(file_dir):
             pass
     return fileListNew
 
+@require_GET
+@valid_request
 def safePolicy(request):
     safe_policy_list = list(SafetyPolicy.objects.all())
     result_list = []
@@ -35,12 +42,18 @@ def safePolicy(request):
     return HttpResponse(json.dumps([i.__dict__ for i in result_list]),content_type='application/json')
 
 
-
+@require_GET
+@valid_request
 def exerciseTips(request):
     exercise_tips_list = list(ExerciseTips.objects.all())
     result = choice(exercise_tips_list)
     return HttpResponse(result.content)
 
+def homePage(request):
+    return HttpResponse('Hello, this is the backend for our Melbourne safe exercise ios application.')
+
+@require_GET
+@valid_request
 def safeTips(request):
     safe_tips_list = list(SafeTips.objects.all())
     result = choice(safe_tips_list)

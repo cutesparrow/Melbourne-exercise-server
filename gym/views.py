@@ -2,9 +2,21 @@ from math import radians, cos, sin, asin, sqrt
 import json
 from gym.models import *
 # Create your views here.
-from django.http import HttpResponse,HttpResponseNotFound
+from django.http import HttpResponse,HttpResponseNotFound,HttpResponseForbidden
 from datetime import datetime
+from functools import wraps
+from django.views.decorators.http import require_GET
 
+def valid_request(f):
+    @wraps(f)
+    def decorated_function(request, *args, **kwargs):
+        validator = '2c4092daa53543069e0800b12522463c'
+        valid_result = request.META.get("HTTP_ACCESS_TOKEN") == validator
+        if valid_result:
+            return f(request, *args, **kwargs)
+        else:
+            return HttpResponseForbidden()
+    return decorated_function
 
 class RoadSituation:
     def __init__(self,day,situation,hours):
@@ -18,6 +30,9 @@ class OneHourRoadSituation:
         self.high = high
         self.low = low
         self.average = average
+
+@require_GET
+@valid_request
 def gymList(request):
     if request.method == 'GET':
         user_lat = request.GET.get('lat',default=0)
@@ -155,7 +170,8 @@ def getRoadSituationData(sensors,distance):
     return [today,tomorrow]
 
 
-
+@require_GET
+@valid_request
 def getRoadSituation(request):
     if request.method == 'GET':
         user_lat = float(request.GET.get('user_lat',default=0))

@@ -3,6 +3,8 @@ from django.http import HttpResponse,HttpResponseNotFound
 import json
 import os
 from random import choice
+from gym.models import *
+from random import choice
 
 def poster(request):
     fileList = file_name_listdir('./static')
@@ -23,12 +25,30 @@ def file_name_listdir(file_dir):
         else:
             pass
     return fileListNew
-def slogan(request):
-    return HttpResponse("Avoid the following situations: strained reps, poor energy levels, incomplete sets, longer-than-desired workouts, and shoddy results.")
+
+def safePolicy(request):
+    safe_policy_list = list(SafetyPolicy.objects.all())
+    result_list = []
+    for i in safe_policy_list:
+        safe_policy = SafePolicy(id=i.id,date=i.start_date,title=i.title,content=i.content)
+        result_list.append(safe_policy)
+    return HttpResponse(json.dumps([i.__dict__ for i in result_list]),content_type='application/json')
+
+
+
+def exerciseTips(request):
+    exercise_tips_list = list(ExerciseTips.objects.all())
+    result = choice(exercise_tips_list)
+    return HttpResponse(result.content)
 
 def safeTips(request):
-    return HttpResponse("""
-Gyms and indoor recreation
+    safe_tips_list = list(SafeTips.objects.all())
+    result = choice(safe_tips_list)
+    return HttpResponse(result.content)
 
-Classes and group exercise classes may be held with up to 50 people and a maximum density of 1 person per 4 square metres. 
-It is recommended that you wear a face mask when exercising indoors where you can’t keep 1.5 metre distance from others, except where that exercise or physical activity leaves you short of breath or puffing.""")
+class SafePolicy:
+    def __init__(self,id,date,title,content):
+        self.id = id
+        self.date = date
+        self.title = title
+        self.content = content

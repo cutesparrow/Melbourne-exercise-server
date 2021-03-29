@@ -17,6 +17,37 @@ def load_initial_gym_data():
         for j in Images:
             G.image_set.create(image_name=j)
 
+def load_exercise_into_database():
+    list = ['gym','hiking','jogging','walk_dog']
+    for i in list:
+        E = Exercise(exercise_name=i)
+        E.save()
+
+
+
+
+
+def load_safety_tips_into_database():
+    safety_tips_list = load_csv_file(filename='./resources/safety_tips.csv')
+    for i in safety_tips_list:
+        type = i['type']
+        exercise = Exercise.objects.get(exercise_name=type)
+        exercise.safetips_set.create(content=i['content'])
+
+def load_exercise_tips_into_database():
+    exercise_tips_list = load_csv_file(filename='./resources/exercise_tips.csv')
+    for i in exercise_tips_list:
+        type = i['type']
+        exercise = Exercise.objects.get(exercise_name=type)
+        exercise.exercisetips_set.create(content=i['content'])
+
+def load_safety_policy_into_database():
+    safety_policy_list = load_csv_file(filename='./resources/safety_policy.csv')
+    for i in safety_policy_list:
+        safety_policy = SafetyPolicy(start_date=i['start_date'],title=i['title'],content=i['content'])
+        safety_policy.save()
+
+
 
 def download_file(url, filename):
     try:
@@ -48,16 +79,15 @@ def store_sensor_location():
         sensor.save()
 def load_csv_file(filename):
     data = pd.read_csv(filename)
-    fitness_list = []
+    list = []
     for i, content in data.iterrows():
-        fitness_list.append(content.to_dict())
-    return fitness_list
+        list.append(content.to_dict())
+    return list
 
 def store_sensor_day_data():
     with open('./resources/pedestrian_sensor_location.json','r') as f:
         content = json.loads(f.read())
     weekdays = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday']
-
     for i in content:
         sensor = Sensor.objects.get(pk = i['sensor_id'])
         for j in weekdays:
@@ -68,4 +98,8 @@ def initial():
     download_sensor_location()
     store_sensor_location()
     store_sensor_day_data()
+    load_exercise_into_database()
+    load_exercise_tips_into_database()
+    load_safety_policy_into_database()
+    load_safety_tips_into_database()
 

@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('gym/',include("gym.urls")),
     path('poster/',views.poster, name = 'poster'),
-    path('slogan/',views.slogan, name = 'slogan'),
-    path('safeTips/',views.safeTips, name = 'slogan')
+    path('exerciseTips/',views.exerciseTips, name = 'exercise'),
+    path('safeTips/',views.safeTips, name = 'safe'),
+    path('safePolicy/',views.safePolicy,name = 'policy'),
 ]

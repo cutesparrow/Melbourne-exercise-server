@@ -29,19 +29,23 @@ class Image(models.Model):
     def __str__(self):
         return self.image_name + ' ' + self.gym.gym_name
 
-class SafeTips(models.Model):
-    topic = models.CharField(max_length=10)
-    subTitle = models.CharField(max_length=30)
-    content = models.CharField(max_length=200)
-    def __str__(self):
-        return self.topic
-
 class Exercise(models.Model):
     exercise_name = models.CharField(max_length=10)
+
+class SafeTips(models.Model):
+    exercise = models.ForeignKey(Exercise,on_delete=models.CASCADE)
+    content = models.CharField(max_length=200)
+    def __str__(self):
+        return self.content
 
 class ExerciseTips(models.Model):
     exercise = models.ForeignKey(Exercise,on_delete=models.CASCADE)
     content = models.CharField(max_length=20)
+
+class SafetyPolicy(models.Model):
+    start_date = models.CharField(max_length=12)
+    title = models.CharField(max_length=50)
+    content = models.CharField(max_length=1000)
 
 
 class Park(models.Model):

@@ -1,7 +1,7 @@
 from gym.models import *
 import pandas as pd
 from sodapy import Socrata
-
+import datetime
 
 def getDataframe():
     client = Socrata("data.melbourne.vic.gov.au", None)
@@ -32,10 +32,14 @@ def parserPedestriandata(results_df):
 
 
 def insertIntodatabase(dataframe):
+    HourlyRoadSituation.objects.all().delete()
+    print('successfully clean history records')
+    print(datetime.datetime.today().strftime("%Y-%m-%d %H:%M"))
     for index, content in dataframe.iterrows():
         daySensor = DaySensor.objects.get(day=index[0].lower(),sensor_id=index[-1])
         daySensor.hourlyroadsituation_set.create(hour=index[1],high=content['maximum'],low=content['minimum'],average=content['average'])
-
+    print('successfully insert all new records')
+    print(datetime.datetime.today().strftime("%Y-%m-%d %H:%M"))
 
 def regularyTask():
     dataframe = getDataframe()

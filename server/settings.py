@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ['melbournesafeexercise.tk','www.melbournesafeexercise.tk','127.
 # Application definition
 
 INSTALLED_APPS = [
+    'django_crontab',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -37,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'gym.apps.GymConfig',
-    'django_crontab',
+
 ]
 
 
@@ -73,7 +74,7 @@ WSGI_APPLICATION = 'server.wsgi.application'
 
 # regularly task
 CRONJOBS = [
-    ('*/1 * * * *', 'server.task.update_dataset'),
+    ('0 0 1 * *', 'Task_UpdatePedestrianData.regularyTask','>>/home/django/Melbourne-exercise-server/server/pedestrianUpdateLog.txt'),
 ]
 
 # Database

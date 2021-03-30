@@ -52,7 +52,7 @@ def exerciseTips(request):
     return HttpResponse(result.content)
 
 def homePage(request):
-    return HttpResponse('Hello, this is the backend for our Melbourne safe exercise ios application.\n Your can not access other content of this site if you keep using Browser')
+    return HttpResponse('Hello, this is the backend for our Melbourne safe exercise ios application.\n You can not access other content of this site if you don\'t have a valid access token.')
 
 @require_GET
 @valid_request

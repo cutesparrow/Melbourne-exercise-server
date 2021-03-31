@@ -106,4 +106,5 @@ def initial():
     load_exercise_tips_into_database()
     load_safety_policy_into_database()
     load_safety_tips_into_database()
+    load_exercise_benefits_into_database()
 

@@ -10,7 +10,7 @@ def load_initial_gym_data():
     pk = 1
     for i in fitness_list:
         Images = eval(i['Images'])
-        G = Gym(gym_name=i['Name'],gym_address=i['Address']+' '+i['Suburb']+' '+i['State']+' '+str(i['Postcode']),gym_limitation=i['Limitation'],gym_coordinate_lat=i['Latitude'],gym_coordinate_long=i['Longitude'])
+        G = Gym(gym_name=i['Name'],gym_address=i['Address']+' '+i['Suburb']+' '+i['State']+' '+str(i['Postcode']),gym_limitation=i['Limitation'],gym_coordinate_lat=i['Latitude'],gym_coordinate_long=i['Longitude'],gym_class=i['Class'])
         G.save()
         G = Gym.objects.get(pk=pk)
         pk+=1
@@ -47,7 +47,11 @@ def load_safety_policy_into_database():
         safety_policy = SafetyPolicy(start_date=i['start_date'],title=i['title'],content=i['content'])
         safety_policy.save()
 
-
+def load_exercise_benefits_into_database():
+    exercise_benefits = load_csv_file(filename='./resources/exercise_benefit.csv')
+    for i in exercise_benefits:
+        exercise_benefit = ExerciseBenefits(content=i['content'])
+        exercise_benefit.save()
 
 def download_file(url, filename):
     try:

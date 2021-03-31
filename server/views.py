@@ -67,3 +67,61 @@ class SafePolicy:
         self.date = date
         self.title = title
         self.content = content
+
+@require_GET
+@valid_request
+def getShowsInformation(request):
+    exercise_list = list(Exercise.objects.all())
+    exercise = choice(exercise_list)
+    type = exercise.exercise_name
+    exerciseTipsList = exercise.exercisetips_set.all()
+    safetyTipsList = exercise.safetips_set.all()
+    exercise_tip = choice(list(exerciseTipsList)).content
+    safety_tip = choice(list(safetyTipsList)).content
+    image = getRelatedImage(type)
+    benefit = choice(list(ExerciseBenefits.objects.all())).content
+    response = ShowInformation(imageName=image,safetyTips=safety_tip,exerciseTips=exercise_tip,exerciseBenefits=benefit)
+    return HttpResponse(json.dumps(response.__dict__),content_type='application/json')
+def getRelatedImage(type):
+    fileList = file_name_listdir(settings.STATIC_URL)
+    if type == 'walk_dog':
+        type = 'dog'
+    newList = []
+    for i in range(len(fileList)):
+        if type in fileList[i]:
+            newList.append(fileList[i])
+    return choice(newList)
+
+class ShowInformation:
+    def __init__(self,imageName,safetyTips,exerciseTips,exerciseBenefits):
+        self.imageName = imageName
+        self.safetyTips = safetyTips
+        self.exerciseTips = exerciseTips
+        self.exerciseBenefits = exerciseBenefits
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

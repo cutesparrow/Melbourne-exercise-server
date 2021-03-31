@@ -1,16 +1,16 @@
-﻿Name,Address,Suburb,Postcode,State,Latitude,Longitude,Limitation,Images
-Anytime Fitness,272-282 Queen Street,Melbourne,3000,VIC,-37.81109952,144.9587735,30,"['gym01','gym02','gym03','gym04','gym05']"
-Anytime Fitness,367 Collins Street,Melbourne,3000,VIC,-37.815507,144.9622067,45,"['gym11','gym12','gym13','gym14']"
-Fitness First Melbourne Central,211 La Trobe Street,Melbourne,3000,VIC,-37.80926865,144.96358,40,"['gym21','gym22','gym23','gym24']"
-South Pacific Health Club,550 Bourke Street,Melbourne,3000,VIC,-37.81401527,144.9572285,35,"['gym31','gym32','gym33']"
-Orangetheory Fitness,422 Collins Street,Melbourne,3004,VIC,-37.8162077,144.9602179,40,"['gym41','gym42','gym43']"
-Prestige Gym,181 King Street,Melbourne,3000,VIC,-37.81515111,144.9550778,25,"['gym51','gym52','gym53','gym54']"
-Virgin Active Bourke Street,138 BOURKE STREET,Melbourne,3000,VIC,-37.81116904,144.9691091,30,"['gym61','gym62','gym63']"
-Corporate Fitness Club,321 Flinders Ln,Melbourne,3000,VIC,-37.81632237,144.9639593,40,"['gym71','gym72','gym73']"
-CrossFit CBD,333 Flinders Lane,Melbourne,3000,VIC,-37.81764657,144.9633041,35,"['gym81','gym82','gym83']"
-Plus Fitness 24/7 Flinders Street,452 Flinders Street,Melbourne,3000,VIC,-37.81795502,144.9586325,30,"['gym91','gym92','gym93']"
-F45 Training Exhibition,45 Exhibition St,Melbourne,3000,VIC,-37.81317597,144.971914,45,"['gym101','gym102','gym103']"
-Doherty's Gym City,367 Flinders St,Melbourne,3000,VIC,-37.81856767,144.9624698,40,"['gym111','gym112','gym113']"
-Fitness First Bourke St,Level 2/341-345 Bourke St,Melbourne,3000,VIC,-37.81380192,144.9634458,30,"['gym121','gym122','gym123']"
-Fitness First Flinders St,276 Flinders Street,Melbourne,3000,VIC,-37.81756881,144.965176,45,"['gym131','gym132','gym133']"
-Fitness First QV Platinum,"Cnr Lonsdale &, Russell St",Melbourne,3000,VIC,-37.81044611,144.9668292,35,"['gym141','gym142','gym143']"
+﻿Name,Address,Suburb,Postcode,State,Latitude,Longitude,Limitation,Images,Class
+Anytime Fitness,272-282 Queen Street,Melbourne,3000,VIC,-37.81109952,144.9587735,30,"['gym01','gym02','gym03','gym04','gym05']",Anytime Fitness
+Anytime Fitness,367 Collins Street,Melbourne,3000,VIC,-37.815507,144.9622067,45,"['gym11','gym12','gym13','gym14']",Anytime Fitness
+Fitness First Melbourne Central,211 La Trobe Street,Melbourne,3000,VIC,-37.80926865,144.96358,40,"['gym21','gym22','gym23','gym24']",Fitness First
+South Pacific Health Club,550 Bourke Street,Melbourne,3000,VIC,-37.81401527,144.9572285,35,"['gym31','gym32','gym33']",South Pacific Health Club
+Orangetheory Fitness,422 Collins Street,Melbourne,3004,VIC,-37.8162077,144.9602179,40,"['gym41','gym42','gym43']",Orangetheory Fitness
+Prestige Gym,181 King Street,Melbourne,3000,VIC,-37.81515111,144.9550778,25,"['gym51','gym52','gym53','gym54']",Other
+Virgin Active Bourke Street,138 BOURKE STREET,Melbourne,3000,VIC,-37.81116904,144.9691091,30,"['gym61','gym62','gym63']",Virgin Active
+Corporate Fitness Club,321 Flinders Ln,Melbourne,3000,VIC,-37.81632237,144.9639593,40,"['gym71','gym72','gym73']",Other
+CrossFit CBD,333 Flinders Lane,Melbourne,3000,VIC,-37.81764657,144.9633041,35,"['gym81','gym82','gym83']",CrossFit
+Plus Fitness 24/7 Flinders Street,452 Flinders Street,Melbourne,3000,VIC,-37.81795502,144.9586325,30,"['gym91','gym92','gym93']",Plus Fitness 24/7
+F45 Training Exhibition,45 Exhibition St,Melbourne,3000,VIC,-37.81317597,144.971914,45,"['gym101','gym102','gym103']",F45 Training
+Doherty's Gym City,367 Flinders St,Melbourne,3000,VIC,-37.81856767,144.9624698,40,"['gym111','gym112','gym113']",Doherty's Gym
+Fitness First Bourke St,Level 2/341-345 Bourke St,Melbourne,3000,VIC,-37.81380192,144.9634458,30,"['gym121','gym122','gym123']",Fitness First
+Fitness First Flinders St,276 Flinders Street,Melbourne,3000,VIC,-37.81756881,144.965176,45,"['gym131','gym132','gym133']",Fitness First
+Fitness First QV Platinum,"Cnr Lonsdale &, Russell St",Melbourne,3000,VIC,-37.81044611,144.9668292,35,"['gym141','gym142','gym143']",Fitness First

@@ -20,6 +20,7 @@ class Gym(models.Model):
     gym_limitation = models.IntegerField(default=0)
     gym_coordinate_lat = models.FloatField()
     gym_coordinate_long = models.FloatField()
+    gym_class = models.CharField(max_length=40)
     def __str__(self):
         return self.gym_name
 
@@ -93,4 +94,5 @@ class HourlyRoadSituation(models.Model):
     low = models.IntegerField()
     average = models.IntegerField()
 
-
+class ExerciseBenefits(models.Model):
+    content = models.CharField(max_length=200)

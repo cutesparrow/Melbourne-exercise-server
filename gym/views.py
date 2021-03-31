@@ -95,6 +95,7 @@ class ResponseGym:
         self.distance = round(haversine(float(user_long),float(user_lat),self.long,self.lat),2)
         self.star = False
         self.address = Gym.gym_address
+        self.classType = Gym.gym_class
 
 def findAllRelatedSensor(gym_lat,gym_long,user_lat,user_long):
     today = datetime.now().weekday()

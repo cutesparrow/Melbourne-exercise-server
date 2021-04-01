@@ -8,6 +8,11 @@ from functools import wraps
 from django.views.decorators.http import require_GET
 
 def valid_request(f):
+    """
+    check request header token. Only accept request from app
+    :param f:
+    :return:
+    """
     @wraps(f)
     def decorated_function(request, *args, **kwargs):
         validator = '2c4092daa53543069e0800b12522463c'
@@ -43,23 +48,30 @@ def gymList(request):
 
 
 
-def haversine(lon1, lat1, lon2, lat2):  # 经度1，纬度1，经度2，纬度2 （十进制度数）
+def haversine(lon1, lat1, lon2, lat2):
     """
     Calculate the great circle distance between two points
     on the earth (specified in decimal degrees)
     """
-    # 将十进制度数转化为弧度
+
     lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
 
-    # haversine公式
+
     dlon = lon2 - lon1
     dlat = lat2 - lat1
     a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2
     c = 2 * asin(sqrt(a))
-    r = 6371  # 地球平均半径，单位为公里
+    r = 6371
     return c * r
 
 def responseGymList(allGyms,user_lat,user_long):
+    """
+    response gym list and sorted by distance to userlocation
+    :param allGyms:
+    :param user_lat:
+    :param user_long:
+    :return:
+    """
     gymlist = []
     for i in allGyms:
         gymlist.append(ResponseGym(i,user_lat,user_long).__dict__)
@@ -98,6 +110,16 @@ class ResponseGym:
         self.classType = Gym.gym_class
 
 def findAllRelatedSensor(gym_lat,gym_long,user_lat,user_long):
+
+    """
+    based on user location and target location
+    find out sensor on the path, if no sensor , use the cloest one
+    :param gym_lat:
+    :param gym_long:
+    :param user_lat:
+    :param user_long:
+    :return:
+    """
     today = datetime.now().weekday()
     tomorrow = today + 1
     if tomorrow == 7:
@@ -137,6 +159,13 @@ def findAllRelatedSensor(gym_lat,gym_long,user_lat,user_long):
     return sensor_list
 
 def getSituationList(sensors,weekday,distance):
+    """
+    the risk number is calculated with sensor data distance and time cost on road.
+    :param sensors:
+    :param weekday:
+    :param distance:
+    :return:
+    """
     response = RoadSituation(day=weekday, situation=[], hours=24)
     number_sensors = len(sensors)
     for hour in range(24):
@@ -158,6 +187,12 @@ def getSituationList(sensors,weekday,distance):
     return response
 
 def getRoadSituationData(sensors,distance):
+    """
+    based on related sensors and distance,return data at today and tomorrow.
+    :param sensors:
+    :param distance:
+    :return:
+    """
     weekday = datetime.now().weekday()
     today = getWeekDay(weekday)
     if today == 'sunday':
@@ -174,6 +209,11 @@ def getRoadSituationData(sensors,distance):
 @require_GET
 @valid_request
 def getRoadSituation(request):
+    """
+    handle get road risk situation request
+    :param request:
+    :return:
+    """
     if request.method == 'GET':
         user_lat = float(request.GET.get('user_lat',default=0))
         user_long = float(request.GET.get('user_long',default=0))

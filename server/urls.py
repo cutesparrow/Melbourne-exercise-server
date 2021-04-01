@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from . import views
 urlpatterns = [
-    path('jog/',include("jog.urls")),
+    ##path('jog/',include("jog.urls")),
     path('admin/', admin.site.urls),
     path('gym/',include("gym.urls")),
     path('poster/',views.poster, name = 'poster'),

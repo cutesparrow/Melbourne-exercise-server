@@ -71,9 +71,10 @@ class SafePolicy:
 @require_GET
 @valid_request
 def getShowsInformation(request):
-    exercise_list = list(Exercise.objects.all())
+    exercise_list = list(Exercise.objects.filter(exercise_name='gym'))
     exercise = choice(exercise_list)
     type = exercise.exercise_name
+    type = 'gym'
     exerciseTipsList = exercise.exercisetips_set.all()
     safetyTipsList = exercise.safetips_set.all()
     exercise_tip = choice(list(exerciseTipsList)).content

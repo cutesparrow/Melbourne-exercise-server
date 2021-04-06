@@ -6,4 +6,4 @@ django crontab
 
 
 
-by Gaoyu Shi
+coded by Gaoyu Shi

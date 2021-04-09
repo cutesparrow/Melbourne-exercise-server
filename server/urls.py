@@ -20,6 +20,7 @@ urlpatterns = [
     ##path('jog/',include("jog.urls")),
     path('admin/', admin.site.urls),
     path('gym/',include("gym.urls")),
+    path('jog/',include("jog.urls")),
     path('poster/',views.poster, name = 'poster'),
     path('exerciseTips/',views.exerciseTips, name = 'exercise'),
     path('safeTips/',views.safeTips, name = 'safe'),

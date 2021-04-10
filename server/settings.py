@@ -75,8 +75,8 @@ WSGI_APPLICATION = 'server.wsgi.application'
 
 # regularly task
 CRONJOBS = [
-    ('0 0 1 * *', 'Task_UpdatePedestrianData.regularyTask','>>/home/django/Melbourne-exercise-server/server/pedestrianUpdateLog.txt'),
-    ('*/15 * * * *','Task_UpdatePedestrianData.regularyTaskEvery15Mins','>>/home/django/Melbourne-exercise-server/server/pedestrianUpdateLog.txt'),
+    ('0 0 1 * *', 'Task_UpdatePedestrianData.regularyTask','>>/home/ubuntu/django/Melbourne-exercise-server/server/pedestrianUpdateLog.txt'),
+    ('*/15 * * * *','Task_UpdatePedestrianData.regularyTaskEvery15Mins','>>/home/ubuntu/django/Melbourne-exercise-server/server/pedestrianUpdateLog.txt'),
 ]
 
 # Database

@@ -69,7 +69,6 @@ def regularyTaskMonthly():
     dataframe = parserPedestriandata(dataframe)
     insertIntodatabase(dataframe)
 
-
 def regularyTaskEvery15Mins():
     dataframe = getDataframe(target='15mins')
     dataframe = parserHourlyPedestriandata(dataframe)

@@ -422,3 +422,7 @@ successfully clean history Last hour sensor data
 2021-04-11 07:00
 successfully insert all new timely sensor records
 2021-04-11 07:00
+successfully clean history Last hour sensor data
+2021-04-11 07:15
+successfully insert all new timely sensor records
+2021-04-11 07:15

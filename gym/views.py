@@ -226,5 +226,4 @@ def getRoadSituation(request):
         return HttpResponseNotFound()
     sensor_list = findAllRelatedSensor(gym.gym_coordinate_lat,gym.gym_coordinate_long,user_lat,user_long)
     result = getRoadSituationData(sensor_list,distance)
-
     return HttpResponse(json.dumps({'list':[i.__dict__ for i in result]}),content_type='application/json')

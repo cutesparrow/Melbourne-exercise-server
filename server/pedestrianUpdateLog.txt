@@ -1,0 +1,424 @@
+successfully clean history Last hour sensor data
+2021-04-10 04:45
+successfully insert all new timely sensor records
+2021-04-10 04:45
+successfully clean history Last hour sensor data
+2021-04-10 05:00
+successfully insert all new timely sensor records
+2021-04-10 05:00
+successfully clean history Last hour sensor data
+2021-04-10 05:15
+successfully insert all new timely sensor records
+2021-04-10 05:15
+successfully clean history Last hour sensor data
+2021-04-10 05:30
+successfully insert all new timely sensor records
+2021-04-10 05:30
+successfully clean history Last hour sensor data
+2021-04-10 05:45
+successfully insert all new timely sensor records
+2021-04-10 05:45
+successfully clean history Last hour sensor data
+2021-04-10 06:00
+successfully insert all new timely sensor records
+2021-04-10 06:00
+successfully clean history Last hour sensor data
+2021-04-10 06:15
+successfully insert all new timely sensor records
+2021-04-10 06:15
+successfully clean history Last hour sensor data
+2021-04-10 06:30
+successfully insert all new timely sensor records
+2021-04-10 06:30
+successfully clean history Last hour sensor data
+2021-04-10 06:45
+successfully insert all new timely sensor records
+2021-04-10 06:45
+successfully clean history Last hour sensor data
+2021-04-10 07:00
+successfully insert all new timely sensor records
+2021-04-10 07:00
+successfully clean history Last hour sensor data
+2021-04-10 07:15
+successfully insert all new timely sensor records
+2021-04-10 07:15
+successfully clean history Last hour sensor data
+2021-04-10 07:30
+successfully insert all new timely sensor records
+2021-04-10 07:30
+successfully clean history Last hour sensor data
+2021-04-10 07:45
+successfully insert all new timely sensor records
+2021-04-10 07:45
+successfully clean history Last hour sensor data
+2021-04-10 08:00
+successfully insert all new timely sensor records
+2021-04-10 08:00
+successfully clean history Last hour sensor data
+2021-04-10 08:15
+successfully insert all new timely sensor records
+2021-04-10 08:15
+successfully clean history Last hour sensor data
+2021-04-10 08:30
+successfully insert all new timely sensor records
+2021-04-10 08:30
+successfully clean history Last hour sensor data
+2021-04-10 08:45
+successfully insert all new timely sensor records
+2021-04-10 08:45
+successfully clean history Last hour sensor data
+2021-04-10 09:00
+successfully insert all new timely sensor records
+2021-04-10 09:00
+successfully clean history Last hour sensor data
+2021-04-10 09:15
+successfully insert all new timely sensor records
+2021-04-10 09:15
+successfully clean history Last hour sensor data
+2021-04-10 09:30
+successfully insert all new timely sensor records
+2021-04-10 09:30
+successfully clean history Last hour sensor data
+2021-04-10 09:45
+successfully insert all new timely sensor records
+2021-04-10 09:45
+successfully clean history Last hour sensor data
+2021-04-10 10:00
+successfully insert all new timely sensor records
+2021-04-10 10:00
+successfully clean history Last hour sensor data
+2021-04-10 10:15
+successfully insert all new timely sensor records
+2021-04-10 10:15
+successfully clean history Last hour sensor data
+2021-04-10 10:30
+successfully insert all new timely sensor records
+2021-04-10 10:30
+successfully clean history Last hour sensor data
+2021-04-10 10:45
+successfully insert all new timely sensor records
+2021-04-10 10:45
+successfully clean history Last hour sensor data
+2021-04-10 11:00
+successfully insert all new timely sensor records
+2021-04-10 11:00
+successfully clean history Last hour sensor data
+2021-04-10 11:15
+successfully insert all new timely sensor records
+2021-04-10 11:15
+successfully clean history Last hour sensor data
+2021-04-10 11:30
+successfully insert all new timely sensor records
+2021-04-10 11:30
+successfully clean history Last hour sensor data
+2021-04-10 11:45
+successfully insert all new timely sensor records
+2021-04-10 11:45
+successfully clean history Last hour sensor data
+2021-04-10 12:00
+successfully insert all new timely sensor records
+2021-04-10 12:00
+successfully clean history Last hour sensor data
+2021-04-10 12:15
+successfully insert all new timely sensor records
+2021-04-10 12:15
+successfully clean history Last hour sensor data
+2021-04-10 12:30
+successfully insert all new timely sensor records
+2021-04-10 12:30
+successfully clean history Last hour sensor data
+2021-04-10 12:45
+successfully insert all new timely sensor records
+2021-04-10 12:45
+successfully clean history Last hour sensor data
+2021-04-10 13:00
+successfully insert all new timely sensor records
+2021-04-10 13:00
+successfully clean history Last hour sensor data
+2021-04-10 13:15
+successfully insert all new timely sensor records
+2021-04-10 13:15
+successfully clean history Last hour sensor data
+2021-04-10 13:30
+successfully insert all new timely sensor records
+2021-04-10 13:30
+successfully clean history Last hour sensor data
+2021-04-10 13:45
+successfully insert all new timely sensor records
+2021-04-10 13:45
+successfully clean history Last hour sensor data
+2021-04-10 14:00
+successfully insert all new timely sensor records
+2021-04-10 14:00
+successfully clean history Last hour sensor data
+2021-04-10 14:15
+successfully insert all new timely sensor records
+2021-04-10 14:15
+successfully clean history Last hour sensor data
+2021-04-10 14:30
+successfully insert all new timely sensor records
+2021-04-10 14:30
+successfully clean history Last hour sensor data
+2021-04-10 14:45
+successfully insert all new timely sensor records
+2021-04-10 14:45
+successfully clean history Last hour sensor data
+2021-04-10 15:00
+successfully insert all new timely sensor records
+2021-04-10 15:00
+successfully clean history Last hour sensor data
+2021-04-10 15:15
+successfully insert all new timely sensor records
+2021-04-10 15:15
+successfully clean history Last hour sensor data
+2021-04-10 15:30
+successfully insert all new timely sensor records
+2021-04-10 15:30
+successfully clean history Last hour sensor data
+2021-04-10 15:45
+successfully insert all new timely sensor records
+2021-04-10 15:45
+successfully clean history Last hour sensor data
+2021-04-10 16:00
+successfully insert all new timely sensor records
+2021-04-10 16:00
+successfully clean history Last hour sensor data
+2021-04-10 16:15
+successfully insert all new timely sensor records
+2021-04-10 16:15
+successfully clean history Last hour sensor data
+2021-04-10 16:30
+successfully insert all new timely sensor records
+2021-04-10 16:30
+successfully clean history Last hour sensor data
+2021-04-10 16:45
+successfully insert all new timely sensor records
+2021-04-10 16:45
+successfully clean history Last hour sensor data
+2021-04-10 17:00
+successfully insert all new timely sensor records
+2021-04-10 17:00
+successfully clean history Last hour sensor data
+2021-04-10 17:15
+successfully insert all new timely sensor records
+2021-04-10 17:15
+successfully clean history Last hour sensor data
+2021-04-10 17:30
+successfully insert all new timely sensor records
+2021-04-10 17:30
+successfully clean history Last hour sensor data
+2021-04-10 17:45
+successfully insert all new timely sensor records
+2021-04-10 17:45
+successfully clean history Last hour sensor data
+2021-04-10 18:00
+successfully insert all new timely sensor records
+2021-04-10 18:00
+successfully clean history Last hour sensor data
+2021-04-10 18:15
+successfully insert all new timely sensor records
+2021-04-10 18:15
+successfully clean history Last hour sensor data
+2021-04-10 18:30
+successfully insert all new timely sensor records
+2021-04-10 18:30
+successfully clean history Last hour sensor data
+2021-04-10 18:45
+successfully insert all new timely sensor records
+2021-04-10 18:45
+successfully clean history Last hour sensor data
+2021-04-10 19:00
+successfully insert all new timely sensor records
+2021-04-10 19:00
+successfully clean history Last hour sensor data
+2021-04-10 19:15
+successfully insert all new timely sensor records
+2021-04-10 19:15
+successfully clean history Last hour sensor data
+2021-04-10 19:30
+successfully insert all new timely sensor records
+2021-04-10 19:30
+successfully clean history Last hour sensor data
+2021-04-10 19:45
+successfully insert all new timely sensor records
+2021-04-10 19:45
+successfully clean history Last hour sensor data
+2021-04-10 20:00
+successfully insert all new timely sensor records
+2021-04-10 20:00
+successfully clean history Last hour sensor data
+2021-04-10 20:15
+successfully insert all new timely sensor records
+2021-04-10 20:15
+successfully clean history Last hour sensor data
+2021-04-10 20:30
+successfully insert all new timely sensor records
+2021-04-10 20:30
+successfully clean history Last hour sensor data
+2021-04-10 20:45
+successfully insert all new timely sensor records
+2021-04-10 20:45
+successfully clean history Last hour sensor data
+2021-04-10 21:00
+successfully insert all new timely sensor records
+2021-04-10 21:00
+successfully clean history Last hour sensor data
+2021-04-10 21:15
+successfully insert all new timely sensor records
+2021-04-10 21:15
+successfully clean history Last hour sensor data
+2021-04-10 21:30
+successfully insert all new timely sensor records
+2021-04-10 21:30
+successfully clean history Last hour sensor data
+2021-04-10 21:45
+successfully insert all new timely sensor records
+2021-04-10 21:45
+successfully clean history Last hour sensor data
+2021-04-10 22:00
+successfully insert all new timely sensor records
+2021-04-10 22:00
+successfully clean history Last hour sensor data
+2021-04-10 22:15
+successfully insert all new timely sensor records
+2021-04-10 22:15
+successfully clean history Last hour sensor data
+2021-04-10 22:30
+successfully insert all new timely sensor records
+2021-04-10 22:30
+successfully clean history Last hour sensor data
+2021-04-10 22:45
+successfully insert all new timely sensor records
+2021-04-10 22:45
+successfully clean history Last hour sensor data
+2021-04-10 23:00
+successfully insert all new timely sensor records
+2021-04-10 23:00
+successfully clean history Last hour sensor data
+2021-04-10 23:15
+successfully insert all new timely sensor records
+2021-04-10 23:15
+successfully clean history Last hour sensor data
+2021-04-10 23:30
+successfully insert all new timely sensor records
+2021-04-10 23:30
+successfully clean history Last hour sensor data
+2021-04-10 23:45
+successfully insert all new timely sensor records
+2021-04-10 23:45
+successfully clean history Last hour sensor data
+2021-04-11 00:00
+successfully insert all new timely sensor records
+2021-04-11 00:00
+successfully clean history Last hour sensor data
+2021-04-11 00:15
+successfully insert all new timely sensor records
+2021-04-11 00:15
+successfully clean history Last hour sensor data
+2021-04-11 00:30
+successfully insert all new timely sensor records
+2021-04-11 00:30
+successfully clean history Last hour sensor data
+2021-04-11 00:45
+successfully insert all new timely sensor records
+2021-04-11 00:45
+successfully clean history Last hour sensor data
+2021-04-11 01:00
+successfully insert all new timely sensor records
+2021-04-11 01:00
+successfully clean history Last hour sensor data
+2021-04-11 01:15
+successfully insert all new timely sensor records
+2021-04-11 01:15
+successfully clean history Last hour sensor data
+2021-04-11 01:30
+successfully insert all new timely sensor records
+2021-04-11 01:30
+successfully clean history Last hour sensor data
+2021-04-11 01:45
+successfully insert all new timely sensor records
+2021-04-11 01:45
+successfully clean history Last hour sensor data
+2021-04-11 02:00
+successfully insert all new timely sensor records
+2021-04-11 02:00
+successfully clean history Last hour sensor data
+2021-04-11 02:15
+successfully insert all new timely sensor records
+2021-04-11 02:15
+successfully clean history Last hour sensor data
+2021-04-11 02:30
+successfully insert all new timely sensor records
+2021-04-11 02:30
+successfully clean history Last hour sensor data
+2021-04-11 02:45
+successfully insert all new timely sensor records
+2021-04-11 02:45
+successfully clean history Last hour sensor data
+2021-04-11 03:00
+successfully insert all new timely sensor records
+2021-04-11 03:00
+successfully clean history Last hour sensor data
+2021-04-11 03:15
+successfully insert all new timely sensor records
+2021-04-11 03:15
+successfully clean history Last hour sensor data
+2021-04-11 03:30
+successfully insert all new timely sensor records
+2021-04-11 03:30
+successfully clean history Last hour sensor data
+2021-04-11 03:45
+successfully insert all new timely sensor records
+2021-04-11 03:45
+successfully clean history Last hour sensor data
+2021-04-11 04:00
+successfully insert all new timely sensor records
+2021-04-11 04:00
+successfully clean history Last hour sensor data
+2021-04-11 04:15
+successfully insert all new timely sensor records
+2021-04-11 04:15
+successfully clean history Last hour sensor data
+2021-04-11 04:30
+successfully insert all new timely sensor records
+2021-04-11 04:30
+successfully clean history Last hour sensor data
+2021-04-11 04:45
+successfully insert all new timely sensor records
+2021-04-11 04:45
+successfully clean history Last hour sensor data
+2021-04-11 05:00
+successfully insert all new timely sensor records
+2021-04-11 05:00
+successfully clean history Last hour sensor data
+2021-04-11 05:15
+successfully insert all new timely sensor records
+2021-04-11 05:15
+successfully clean history Last hour sensor data
+2021-04-11 05:30
+successfully insert all new timely sensor records
+2021-04-11 05:30
+successfully clean history Last hour sensor data
+2021-04-11 05:45
+successfully insert all new timely sensor records
+2021-04-11 05:45
+successfully clean history Last hour sensor data
+2021-04-11 06:00
+successfully insert all new timely sensor records
+2021-04-11 06:00
+successfully clean history Last hour sensor data
+2021-04-11 06:15
+successfully insert all new timely sensor records
+2021-04-11 06:15
+successfully clean history Last hour sensor data
+2021-04-11 06:30
+successfully insert all new timely sensor records
+2021-04-11 06:30
+successfully clean history Last hour sensor data
+2021-04-11 06:45
+successfully insert all new timely sensor records
+2021-04-11 06:45
+successfully clean history Last hour sensor data
+2021-04-11 07:00
+successfully insert all new timely sensor records
+2021-04-11 07:00

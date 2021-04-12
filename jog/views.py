@@ -62,8 +62,8 @@ def customizedCards(request):
     lat = request.GET.get('lat',default=0)
     long = request.GET.get('long',default=0)
     pathPlanList = selectFourPoint(user_latitude=lat,user_longitude=long)
-    pathPointList = getPathFromAPI(pathPlanList)
-    response = [CustomizedCard(id=1,path=pathPointList,distance=5.2,risk="low",time="35min")]
+    pathPointList,directions,distance = getPathFromAPI(pathPlanList)
+    response = [CustomizedCard(id=1,path=pathPointList,distance=round(distance/1000,1),risk="low",time=str(round(distance*5/1000)) + ' Min',directions=directions)]
     return HttpResponse(json.dumps([i.__dict__ for i in response]),content_type='application/json')
 
 def getPathFromAPI(pointList):
@@ -78,17 +78,22 @@ def getPathFromAPI(pointList):
             pointList[0].longitude) + "&key=" + "AIzaSyB58sfxyNZYcF91YPFHmD-iTvBja-LbBxE" + "&mode=walking" + viaString)
     result = json.loads(res.text)
     pathCoordinateList = []
+    directions = []
+    distance = 0
     for i in result['routes'][0]['legs']:
+        distance += i['distance']['value']
         for j in i['steps']:
+            directions.append(j['html_instructions'])
             pathCoordinateList.append(Coordinate(latitude=j['end_location']['lat'],longitude=j['end_location']['lng']))
-    return pathCoordinateList
+    pathCoordinateList.insert(0,Coordinate(latitude=float(pathCoordinateList[-1].latitude),longitude=float(pathCoordinateList[-1].longitude)))
+    return pathCoordinateList,directions,distance
 
 def selectFourPoint(user_latitude,user_longitude):
     resultList = []
-    startPoint = Coordinate(latitude=user_latitude,longitude=user_longitude)
-    farPoint = Coordinate(latitude=-37.80698388412978, longitude=144.9658893673459)
-    frontPoint = Coordinate(latitude=-37.808848721785054, longitude=144.96631852075188)
-    backPoint = Coordinate(latitude=-37.80817060445021, longitude=144.96033183073786)
+    startPoint = Coordinate(latitude=float(user_latitude),longitude=float(user_longitude))
+    farPoint = Coordinate(latitude=-37.81013712756485, longitude=144.9696444596486)
+    frontPoint = Coordinate(latitude=-37.81225616712328, longitude=144.96224156339468)
+    backPoint = Coordinate(latitude=-37.8072551361701, longitude=144.9683140840899)
     resultList.append(startPoint)
     resultList.append(frontPoint)
     resultList.append(farPoint)
@@ -115,12 +120,13 @@ class ResponseSensorSituation:
             return 'high'
 
 class CustomizedCard:
-    def __init__(self,id,path,distance,risk,time):
+    def __init__(self,id,path,distance,risk,time,directions):
         self.id = id
         self.path = [i.__dict__ for i in path]
         self.distance = distance
         self.risk = risk
         self.time = time
+        self.directions = directions
 
 class PopularCard:
     def __init__(self,id,path,distance,risk,time,popularStar,distanceToUser):

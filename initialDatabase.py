@@ -2,7 +2,7 @@ import pandas as pd
 from gym.models import *
 from urllib.request import urlopen
 import json
-
+from  jog.models import *
 
 
 def load_initial_gym_data():
@@ -97,6 +97,12 @@ def store_sensor_day_data():
         for j in weekdays:
             sensor.daysensor_set.create(day = j,hours = 24)
 
+def load_popular_jogging_path_into_database():
+    popular_jogging_path_list = load_csv_file(filename='./resources/popular_jogging_path.csv')
+    for i in popular_jogging_path_list:
+        path = PopularJoggingPath(pathName=i['name'],path=i['path'],distance=i['distance'],time=i['time'],popularStar=i['star'],centralPoint=i['central'])
+        path.save()
+
 def initial():
     load_initial_gym_data()
     download_sensor_location()
@@ -107,4 +113,5 @@ def initial():
     load_safety_policy_into_database()
     load_safety_tips_into_database()
     load_exercise_benefits_into_database()
+    load_popular_jogging_path_into_database()
 

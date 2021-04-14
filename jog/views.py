@@ -4,8 +4,9 @@ import json
 from gym.models import *
 from django.views.decorators.http import require_GET
 from gym.views import valid_request
-from jog.models import LastHourSensor
+from jog.models import LastHourSensor,PopularJoggingPath
 import requests
+from gym.views import haversine
 # Create your views here.
 
 
@@ -54,7 +55,11 @@ def responseSensorSituationList(allSensorSituation):
 @require_GET
 @valid_request
 def popularCards(request):
-    pass
+    allPopularJoggingPath = PopularJoggingPath.objects.all()
+    userLat = request.GET.get('lat',default=0)
+    userLong = request.GET.get('long',default=0)
+    result = getPopularCardList(allPopularJoggingPath,userLat,userLong)
+    return HttpResponse(json.dumps([i.__dict__ for i in result]),content_type='application/json')
 
 @require_GET
 @valid_request
@@ -65,6 +70,26 @@ def customizedCards(request):
     pathPointList,directions,distance = getPathFromAPI(pathPlanList)
     response = [CustomizedCard(id=1,path=pathPointList,distance=round(distance/1000,1),risk="low",time=str(round(distance*5/1000)) + ' Min',directions=directions)]
     return HttpResponse(json.dumps([i.__dict__ for i in response]),content_type='application/json')
+
+def getPopularCardList(allPopularPath,userLat,userLong):
+    id = 0
+    popularPathList = []
+    for i in allPopularPath:
+        pathList = eval(i.path)
+        path = []
+        for j in pathList:
+            path.append(Coordinate(latitude=j[0],longitude=j[1]))
+        risk = calculateRisk(path)
+        central = eval(i.centralPoint)
+        distanceToUser = round(haversine(float(userLong),float(userLat),float(central[1]),float(central[0])),1)
+        card = PopularCard(id=id,path=path,distance=i.distance,risk=risk,time=str(i.time)+' Min',popularStar=i.popularStar,distanceToUser=distanceToUser)
+        popularPathList.append(card)
+    return popularPathList
+
+
+def calculateRisk(path):
+    # calculate the risk level based on the path
+    return 'low'
 
 def getPathFromAPI(pointList):
     baseURL = "https://maps.googleapis.com/maps/api/directions/json"

@@ -14,6 +14,7 @@ import random
 from multiprocessing.pool import ThreadPool
 from django.conf import settings as django_settings
 import os
+import uuid
 from django.contrib.staticfiles.storage import staticfiles_storage
 # Create your views here.
 
@@ -90,7 +91,7 @@ def customizedCards(request):
 
     responseList = []
     seeds = [i*42 for i in range(1,10)]
-    imageNameList = [str(i)+'routeMap.png' for i in range(1,10)]
+    imageNameList = [str(uuid.uuid4()) for i in range(1,10)]
     input = [[lat,long,length,seeds[i],imageNameList[i]] for i in range(len(seeds))]
     size = len(seeds)
     pool = ThreadPool(size)

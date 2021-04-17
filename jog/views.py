@@ -105,12 +105,13 @@ def customizedCards(request):
             continue
         responseList.append(CustomizedCard(id=id,image=i[-1],distance=i[1],risk="low",time=str(i[2])+' min',instructions=i[0]))
         id += 1
-
+    if len(responseList) == 0:
+        return customizedCards(request)
     return HttpResponse(json.dumps([i.__dict__ for i in responseList]),content_type='application/json')
 
 def getRouteFromAPI(input):
-    lat = input[0]
-    long = input[1]
+    lat = round(float(input[0]),9)
+    long = round(float(input[1]),9)
     length = input[2]
     seed = input[3]
     imageName = input[4]
@@ -146,7 +147,7 @@ def getRouteFromAPI(input):
         ".xApcEalgtGPF4fQc4to1DA")
     if res.status_code != 200:
         return
-    with staticfiles_storage.open(os.path.join(django_settings.STATICFILES_DIRS[0], imageName), 'wb') as out_file:
+    with staticfiles_storage.open(os.path.join(django_settings.STATIC_ROOT, imageName), 'wb') as out_file:
         out_file.write(res.content)
     del res
     return instructionsList,realDistance,time,imageName

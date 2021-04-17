@@ -1,0 +1,1 @@
+https://graphhopper.com/api/1/route?point=-37.80970126,144.959748963&vehicle=foot&ch.disable=true&algorithm=round_trip&round_trip.distance=3000.0&round_trip.seed=7667208082912418694&points_encoded=false&key=7a1ae47b-802e-4bc9-ab1d-a36dcaf05720

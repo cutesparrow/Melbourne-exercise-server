@@ -105,7 +105,7 @@ def customizedCards(request):
             continue
         responseList.append(CustomizedCard(id=id,image=i[-1],distance=i[1],risk="low",time=str(i[2])+' min',instructions=i[0]))
         id += 1
-    if len(responseList) == 0:
+    if len(responseList) < 3:
         return customizedCards(request)
     return HttpResponse(json.dumps([i.__dict__ for i in responseList]),content_type='application/json')
 

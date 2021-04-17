@@ -25,8 +25,6 @@ SECRET_KEY = 'upjdx5u02q+kdch_@hrzbow$m!ak&6()9%9xv--y#c6&pzl#%e'
 DEBUG = True
 
 ALLOWED_HOSTS = ['melbournesafeexercise.tk','www.melbournesafeexercise.tk','127.0.0.1','192.168.50.25']
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -129,3 +127,4 @@ STATICFILES_DIRS = (
     os.path.join(os.path.normpath(BASE_DIR), "static"),
 )
 STATIC_URL =  os.path.join(BASE_DIR,"static/")
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')

@@ -14,6 +14,7 @@ import random
 from multiprocessing.pool import ThreadPool
 from django.conf import settings as django_settings
 import os
+from django.contrib.staticfiles.storage import staticfiles_storage
 # Create your views here.
 
 
@@ -143,7 +144,7 @@ def getRouteFromAPI(input):
         ".xApcEalgtGPF4fQc4to1DA")
     if res.status_code != 200:
         return
-    with open(os.path.join(django_settings.STATICFILES_DIRS[0], imageName), 'wb') as out_file:
+    with staticfiles_storage.open(os.path.join(django_settings.STATICFILES_DIRS[0], imageName), 'wb') as out_file:
         out_file.write(res.content)
     del res
     return instructionsList,realDistance,time,imageName

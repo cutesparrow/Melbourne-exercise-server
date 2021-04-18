@@ -17,6 +17,8 @@ import os
 import uuid
 import sys
 from django.contrib.staticfiles.storage import staticfiles_storage
+from mapbox import encoding
+import urllib
 # Create your views here.
 
 
@@ -105,8 +107,6 @@ def customizedCards(request):
             continue
         responseList.append(CustomizedCard(id=id,image=i[-1],distance=i[1],risk="low",time=str(i[2])+' min',instructions=i[0]))
         id += 1
-    if len(responseList) < 3:
-        return customizedCards(request)
     return HttpResponse(json.dumps([i.__dict__ for i in responseList]),content_type='application/json')
 
 def getRouteFromAPI(input):
@@ -127,8 +127,8 @@ def getRouteFromAPI(input):
     try:
         coordinatesList = json.loads(res.text)['paths'][0]['points']['coordinates']
     except KeyError as e:
-        print(requestURL)
-        print(e)
+        # print(requestURL)
+        # print(e)
         return
     realDistance = round(int(json.loads(res.text)['paths'][0]['distance'])/1000,1)
     time = round(json.loads(res.text)['paths'][0]['time']/60000,1)
@@ -137,14 +137,10 @@ def getRouteFromAPI(input):
         if i["distance"] != 0:
             instructionsList.append(i["text"] + " and walk for " + str(round(i['distance'], 1)) + 'm')
     instructionsList.append("Finish")
-    for i in range(len(coordinatesList)):
-        coordinatesList[i] = (coordinatesList[i][1], coordinatesList[i][0])
-    encodedCoordinatesList = polyline.encode(coordinatesList, 5)
-    res = requests.get(
-        "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s+ff2600("+str(long)+","+str(lat)+"),"
-        "path-3+0061ff-0.55(" + encodedCoordinatesList +
-        ")/auto/300x200@2x?access_token=pk.eyJ1IjoiZ2FveXVzaGkwMDEiLCJhIjoiY2tubGM0cmV1MGY5aTJucGVtMHAwZGtpNyJ9"
-        ".xApcEalgtGPF4fQc4to1DA")
+    encodedCoordinatesList = encoding.encode_polyline(coordinatesList)
+    encodedCoordinatesList = urllib.parse.quote(encodedCoordinatesList,safe='')
+    requestUrl = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s+ff2600("+str(long)+","+str(lat)+"),"+"path-3+0061ff-0.55(" + encodedCoordinatesList +")/auto/300x200@2x?access_token=pk.eyJ1IjoiZ2FveXVzaGkwMDEiLCJhIjoiY2tubGM0cmV1MGY5aTJucGVtMHAwZGtpNyJ9.xApcEalgtGPF4fQc4to1DA"
+    res = requests.get(requestUrl)
     if res.status_code != 200:
         return
     with staticfiles_storage.open(os.path.join(django_settings.STATIC_ROOT, imageName), 'wb') as out_file:

@@ -98,9 +98,19 @@ def store_sensor_day_data():
             sensor.daysensor_set.create(day = j,hours = 24)
 
 def load_popular_jogging_path_into_database():
-    popular_jogging_path_list = load_csv_file(filename='./resources/popular_jogging_path.csv')
+    popular_jogging_path_list = load_csv_file(filename='./resources/popular routes.csv')
     for i in popular_jogging_path_list:
-        path = PopularJoggingPath(pathName=i['name'],path=i['path'],distance=i['distance'],time=i['time'],popularStar=i['star'],centralPoint=i['central'])
+        path = PopularJoggingPath(name=i['name']
+                                  ,map=i['map']
+                                  ,distance=i['distance']
+                                  ,elevation=i['elevation']
+                                  ,background=i['background']
+                                  ,intruduction=i['intruduction']
+                                  ,suburb=i['suburb']
+                                  ,postcode=i['postcode']
+                                  ,latitude=i['latitude']
+                                  ,longitude=i['longitude']
+                                  ,detail_text=i['detail_text'])
         path.save()
 
 def initial():

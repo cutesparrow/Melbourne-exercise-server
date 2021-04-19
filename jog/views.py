@@ -79,6 +79,7 @@ def customizedCards(request):
     lat = request.GET.get('lat',default=0)
     long = request.GET.get('long',default=0)
     length = float(request.GET.get('length',default=0))*1000
+    type = request.GET.get('type')
     # pathPlanListCollections = selectFourPoint(user_latitude=lat,user_longitude=long,length=length)
     # count = min(7,len(pathPlanListCollections))
     # if count != 1:
@@ -95,7 +96,7 @@ def customizedCards(request):
     responseList = []
     seeds = [random.randint(1,sys.maxsize) for i in range(1,10)]
     imageNameList = [str(uuid.uuid4())+'.png' for i in range(1,10)]
-    input = [[lat,long,length,seeds[i],imageNameList[i]] for i in range(len(seeds))]
+    input = [[lat,long,length,seeds[i],imageNameList[i],type] for i in range(len(seeds))]
     size = len(seeds)
     pool = ThreadPool(size)
     resultList = pool.map(getRouteFromAPI,input)
@@ -115,13 +116,14 @@ def getRouteFromAPI(input):
     length = input[2]
     seed = input[3]
     imageName = input[4]
+    type = input[5]
     baseURL = "https://graphhopper.com/api/1/route"
     point = (lat,long)
     algorithm = 'round_trip'
     distance = length
     key = "7a1ae47b-802e-4bc9-ab1d-a36dcaf05720"
     requestURL = baseURL + "?point=" + str(point[0]) + ',' + str(
-        point[1]) + "&vehicle=foot&ch.disable=true&algorithm=" + algorithm + "&round_trip.distance=" + str(
+        point[1]) + "&vehicle="+type+"&ch.disable=true&algorithm=" + algorithm + "&round_trip.distance=" + str(
         distance) + "&round_trip.seed=" + str(seed) + "&points_encoded=false" + "&key=" + key
     res = requests.get(requestURL)
     try:
@@ -148,23 +150,29 @@ def getRouteFromAPI(input):
     del res
     return instructionsList,realDistance,time,imageName
 
-
 def getPopularCardList(allPopularPath,userLat,userLong):
     id = 0
     popularPathList = []
+
     for i in allPopularPath:
-        pathList = eval(i.path)
-        path = []
-        for j in pathList:
-            path.append(Coordinate(latitude=j[0],longitude=j[1]))
-        risk = calculateRisk(path)
-        central = eval(i.centralPoint)
-        distanceToUser = round(haversine(float(userLong),float(userLat),float(central[1]),float(central[0])),1)
-        card = PopularCard(id=id,path=path,distance=i.distance,risk=risk,time=str(i.time)+' Min',popularStar=i.popularStar,distanceToUser=distanceToUser)
+        distanceToUser = round(haversine(float(userLong),float(userLat),float(i.longitude),float(i.latitude)),1)
+        imageName = getMapImage(i.map,lat=userLat,long=userLong)
+        card = PopularCard(id=id,name=i.name,map=imageName,distance=distanceToUser,longth=i.distance,elevation=i.elevation,background=i.background,intruduction=i.intruduction,suburb=i.suburb,postcode=i.postcode,detail_text=i.detail_text,lat=i.latitude,long=i.longitude)
         popularPathList.append(card)
+        id += 1
 
     return popularPathList
 
+def getMapImage(path,lat,long):
+    encodedCoordinatesList = urllib.parse.quote(path, safe='')
+    requestUrl = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s+ff2600(" + str(long) + "," + str(
+        lat) + ")," + "path-3+0061ff-0.55(" + encodedCoordinatesList + ")/auto/300x200@2x?access_token=pk.eyJ1IjoiZ2FveXVzaGkwMDEiLCJhIjoiY2tubGM0cmV1MGY5aTJucGVtMHAwZGtpNyJ9.xApcEalgtGPF4fQc4to1DA"
+    res = requests.get(requestUrl)
+    imageName = str(uuid.uuid4())+'.png'
+    with staticfiles_storage.open(os.path.join(django_settings.STATIC_ROOT, imageName), 'wb') as out_file:
+        out_file.write(res.content)
+    del res
+    return imageName
 
 def calculateRisk(path):
     # calculate the risk level based on the path
@@ -257,14 +265,20 @@ class CustomizedCard:
         self.instructions = instructions
 
 class PopularCard:
-    def __init__(self,id,path,distance,risk,time,popularStar,distanceToUser):
+    def __init__(self,id,name,map,lat,long,distance,longth,elevation,background,intruduction,suburb,postcode,detail_text):
         self.id = id
-        self.path = [i.__dict__ for i in path]
+        self.name = name
+        self.map = map
         self.distance = distance
-        self.risk = risk
-        self.time = time
-        self.popularStar = popularStar
-        self.distanceToUser = distanceToUser
+        self.longth = longth
+        self.elevation = elevation
+        self.background = background
+        self.intruduction = intruduction
+        self.suburb = suburb
+        self.postcode = postcode
+        self.latitude = lat
+        self.longitude = long
+        self.detail_text = detail_text
 
 class Coordinate:
     def __init__(self,latitude,longitude):

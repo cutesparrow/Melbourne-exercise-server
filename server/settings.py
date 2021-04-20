@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'upjdx5u02q+kdch_@hrzbow$m!ak&6()9%9xv--y#c6&pzl#%e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['melbournesafeexercise.tk','www.melbournesafeexercise.tk','127.0.0.1','192.168.50.25']
 # Application definition

@@ -165,7 +165,10 @@ def getPopularCardList(allPopularPath,userLat,userLong):
 
     return popularPathList
 
-def getMapImage(path,lat,long):
+def getMapImage(input):
+    path = input[0]
+    lat = input[1]
+    long = input[2]
     encodedCoordinatesList = urllib.parse.quote(path, safe='')
     requestUrl = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s+ff2600(" + str(long) + "," + str(
         lat) + ")," + "path-3+0061ff-0.55(" + encodedCoordinatesList + ")/auto/300x200@2x?access_token=pk.eyJ1IjoiZ2FveXVzaGkwMDEiLCJhIjoiY2tubGM0cmV1MGY5aTJucGVtMHAwZGtpNyJ9.xApcEalgtGPF4fQc4to1DA"

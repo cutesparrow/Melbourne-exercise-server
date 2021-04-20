@@ -201,7 +201,7 @@ def calculateRisk(coordinates):
         close_sensor = None
         for i in Sensor.objects.all():
             check = LastHourSensor.objects.filter(sensor_id=i.id)
-            if haversine(long,lat,i.sensor_coordinate_long,i.sensor_coordinate_lat) < distance and check.exist():
+            if haversine(long,lat,i.sensor_coordinate_long,i.sensor_coordinate_lat) < distance and check.exists():
                 close_sensor = i.id
 
         situationList.append(int(LastHourSensor.objects.get(sensor_id=close_sensor).situation))

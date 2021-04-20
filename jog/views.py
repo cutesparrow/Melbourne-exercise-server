@@ -102,6 +102,20 @@ def customizedCards(request):
     resultList = pool.map(getRouteFromAPI,input)
     pool.close()
     pool.join()
+    no = []
+    low = []
+    mid = []
+    high = []
+    for i in resultList:
+        if i[4] == 'no':
+            no.append(i)
+        elif i[4] == 'low':
+            low.append(i)
+        elif i[4] == 'mid':
+            mid.append(i)
+        else:
+            high.append(i)
+    resultList = no + low + mid + high
     id = 0
     for i in resultList:
         if i is None:

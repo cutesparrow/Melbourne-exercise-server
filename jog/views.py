@@ -151,15 +151,17 @@ def getRouteFromAPI(input):
     return instructionsList,realDistance,time,imageName
 
 def getPopularCardList(allPopularPath,userLat,userLong):
-    id = 0
     popularPathList = []
-
-    for i in allPopularPath:
-        distanceToUser = round(haversine(float(userLong),float(userLat),float(i.longitude),float(i.latitude)),1)
-        imageName = getMapImage(i.map,lat=userLat,long=userLong)
-        card = PopularCard(id=id,name=i.name,map=imageName,distance=distanceToUser,longth=i.distance,elevation=i.elevation,background=i.background,intruduction=i.intruduction,suburb=i.suburb,postcode=i.postcode,detail_text=i.detail_text,lat=i.latitude,long=i.longitude)
+    size = len(allPopularPath)
+    pool = ThreadPool(size)
+    input = [[i.map, i.latitude, i.longitude] for i in allPopularPath]
+    resultList = pool.map(getMapImage,input)
+    for i in range(len(allPopularPath)):
+        distanceToUser = round(haversine(float(userLong),float(userLat),float(allPopularPath[i].longitude),float(allPopularPath[i].latitude)),1)
+        imageName = resultList[i]
+        card = PopularCard(id=i,name=allPopularPath[i].name,map=imageName,distance=distanceToUser,longth=allPopularPath[i].distance,elevation=allPopularPath[i].elevation,background=allPopularPath[i].background,intruduction=allPopularPath[i].intruduction,suburb=allPopularPath[i].suburb,postcode=allPopularPath[i].postcode,detail_text=allPopularPath[i].detail_text,lat=allPopularPath[i].latitude,long=allPopularPath[i].longitude)
         popularPathList.append(card)
-        id += 1
+
 
     return popularPathList
 

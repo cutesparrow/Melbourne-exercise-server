@@ -106,8 +106,9 @@ def customizedCards(request):
     for i in resultList:
         if i is None:
             continue
-        responseList.append(CustomizedCard(id=id,image=i[-1],distance=i[1],risk="low",time=str(i[2])+' min',instructions=i[0]))
+        responseList.append(CustomizedCard(id=id,image=i[3],distance=i[1],risk=i[4],time=str(i[2])+' min',instructions=i[0]))
         id += 1
+
     return HttpResponse(json.dumps([i.__dict__ for i in responseList]),content_type='application/json')
 
 def getRouteFromAPI(input):
@@ -139,16 +140,73 @@ def getRouteFromAPI(input):
         if i["distance"] != 0:
             instructionsList.append(i["text"] + " and walk for " + str(round(i['distance'], 1)) + 'm')
     instructionsList.append("Finish")
+    if type == 'foot':
+        risk = assessRisk(coordinatesList)
+        color = getColor(risk)
+    else:
+        risk = 'low'
+        color = '0061ff'
     encodedCoordinatesList = encoding.encode_polyline(coordinatesList)
     encodedCoordinatesList = urllib.parse.quote(encodedCoordinatesList,safe='')
-    requestUrl = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s+ff2600("+str(long)+","+str(lat)+"),"+"path-3+0061ff-0.55(" + encodedCoordinatesList +")/auto/300x200@2x?access_token=pk.eyJ1IjoiZ2FveXVzaGkwMDEiLCJhIjoiY2tubGM0cmV1MGY5aTJucGVtMHAwZGtpNyJ9.xApcEalgtGPF4fQc4to1DA"
+    requestUrl = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s+ff2600("+str(long)+","+str(lat)+"),"+"path-3+"+color+"-0.85(" + encodedCoordinatesList +")/auto/300x200@2x?access_token=pk.eyJ1IjoiZ2FveXVzaGkwMDEiLCJhIjoiY2tubGM0cmV1MGY5aTJucGVtMHAwZGtpNyJ9.xApcEalgtGPF4fQc4to1DA"
     res = requests.get(requestUrl)
     if res.status_code != 200:
         return
     with staticfiles_storage.open(os.path.join(django_settings.STATIC_ROOT, imageName), 'wb') as out_file:
         out_file.write(res.content)
     del res
-    return instructionsList,realDistance,time,imageName
+    return instructionsList,realDistance,time,imageName,risk
+
+def getColor(risk):
+    if risk == 'high':
+        return 'ff2600'
+    elif risk == 'mid':
+        return 'cc6600'
+    elif risk == 'low':
+        return 'cc9933'
+    else:
+        return '33ff00'
+def assessRisk(coordinates):
+    number = calculateRisk(coordinates)
+    if number > 40:
+        return 'high'
+    elif number > 30:
+        return 'mid'
+    elif number > 20:
+        return 'low'
+    else:
+        return 'no'
+
+def calculateRisk(coordinates):
+    start = coordinates[0]
+    far = coordinates[int(len(coordinates)/2)]
+    big_lat,small_lat = max(start[1],far[1]),min(start[1],far[1])
+    big_long,small_long = max(start[0],far[0]),min(start[0],far[0])
+    sensor_list = Sensor.objects.filter(sensor_coordinate_lat__gte = small_lat,
+                                        sensor_coordinate_lat__lte = big_lat,
+                                        sensor_coordinate_long__gte = small_long,
+                                        sensor_coordinate_long__lte = big_long)
+    sensor_list = list(sensor_list)
+    situationList = []
+    for i in sensor_list:
+        try:
+            nowSituation = LastHourSensor.objects.get(sensor_id=i.id)
+            situationList.append(int(nowSituation.situation))
+        except:
+            pass
+    if len(situationList) == 0:
+        lat = (big_lat+small_lat)/2
+        long = (big_long+small_long)/2
+        distance = 2**31
+        close_sensor = None
+        for i in Sensor.objects.all():
+            check = LastHourSensor.objects.filter(sensor_id=i.id)
+            if haversine(long,lat,i.sensor_coordinate_long,i.sensor_coordinate_lat) < distance and check.exist():
+                close_sensor = i.id
+
+        situationList.append(int(LastHourSensor.objects.get(sensor_id=close_sensor).situation))
+    return sum(situationList)/len(situationList)
+
 
 def getPopularCardList(allPopularPath,userLat,userLong):
     popularPathList = []
@@ -179,9 +237,6 @@ def getMapImage(input):
     del res
     return imageName
 
-def calculateRisk(path):
-    # calculate the risk level based on the path
-    return 'low'
 
 def getPathFromAPI(pointList):
     baseURL = "https://maps.googleapis.com/maps/api/directions/json"

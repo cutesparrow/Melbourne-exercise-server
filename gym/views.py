@@ -153,7 +153,7 @@ def findAllRelatedSensor(gym_lat,gym_long,user_lat,user_long):
             daySensor_tomorrow = DaySensor.objects.get(sensor_id=i.id, day=tomorrow)
             check_today = HourlyRoadSituation.objects.filter(day_sensor_id=daySensor.id)
             check_tomorrow = HourlyRoadSituation.objects.filter(day_sensor_id=daySensor_tomorrow.id)
-            if haversine(lat,long,i.sensor_coordinate_lat,i.sensor_coordinate_long) < distance and check_today.exists() and check_tomorrow.exists():
+            if haversine(long,lat,i.sensor_coordinate_long,i.sensor_coordinate_lat) < distance and check_today.exists() and check_tomorrow.exists():
                 close_sensor = i.id
         sensor_list = Sensor.objects.filter(pk=close_sensor)
     return sensor_list

@@ -168,14 +168,14 @@ def getColor(risk):
         return '33ff00'
 def assessRisk(coordinates):
     number = calculateRisk(coordinates)
-    if number > 40:
+    if number > 10:
         return 'high'
-    elif number > 30:
+    elif number > 6:
         return 'mid'
-    elif number > 20:
+    elif number > 3:
         return 'low'
     else:
-        return str(number)
+        return 'no'
 
 def calculateRisk(coordinates):
     start = coordinates[0]

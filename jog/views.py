@@ -175,7 +175,7 @@ def assessRisk(coordinates):
     elif number > 20:
         return 'low'
     else:
-        return 'no'
+        return str(number)
 
 def calculateRisk(coordinates):
     start = coordinates[0]

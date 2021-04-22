@@ -115,8 +115,12 @@ def customizedCards(request):
             mid.append(i)
         else:
             high.append(i)
-    resultList = no + low + mid + high
+    resultListAll = no + low + mid + high
     id = 0
+    resultList = []
+    for i in resultListAll:
+        if i[5] not in [j[5] for j in resultList]:
+            resultList.append(i[0:5])
     for i in resultList:
         if i is None:
             continue
@@ -148,6 +152,8 @@ def getRouteFromAPI(input):
         # print(e)
         return
     realDistance = round(int(json.loads(res.text)['paths'][0]['distance'])/1000,1)
+    if abs(realDistance - length) > length/8 + 1:
+        return None
     time = round(json.loads(res.text)['paths'][0]['time']/60000,1)
     instructionsList = []
     for i in json.loads(res.text)['paths'][0]['instructions'][1:]:
@@ -169,7 +175,7 @@ def getRouteFromAPI(input):
     with staticfiles_storage.open(os.path.join(django_settings.STATIC_ROOT, imageName), 'wb') as out_file:
         out_file.write(res.content)
     del res
-    return instructionsList,realDistance,time,imageName,risk
+    return instructionsList,realDistance,time,imageName,risk,encodedCoordinatesList
 
 def getColor(risk):
     if risk == 'high':
@@ -226,7 +232,7 @@ def getPopularCardList(allPopularPath,userLat,userLong):
     popularPathList = []
     size = len(allPopularPath)
     pool = ThreadPool(size)
-    input = [[i.map, i.latitude, i.longitude] for i in allPopularPath]
+    input = [[i.map, i.latitude, i.longitude,i.name] for i in allPopularPath]
     resultList = pool.map(getMapImage,input)
     for i in range(len(allPopularPath)):
         distanceToUser = round(haversine(float(userLong),float(userLat),float(allPopularPath[i].longitude),float(allPopularPath[i].latitude)),1)
@@ -241,11 +247,14 @@ def getMapImage(input):
     path = input[0]
     lat = input[1]
     long = input[2]
+    name = input[3]
+    imageName = str(name)+'mapImage.png'
+    if staticfiles_storage.exists(os.path.join(django_settings.STATIC_ROOT, imageName)):
+        return imageName
     encodedCoordinatesList = urllib.parse.quote(path, safe='')
     requestUrl = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s+ff2600(" + str(long) + "," + str(
         lat) + ")," + "path-3+0061ff-0.55(" + encodedCoordinatesList + ")/auto/300x200@2x?access_token=pk.eyJ1IjoiZ2FveXVzaGkwMDEiLCJhIjoiY2tubGM0cmV1MGY5aTJucGVtMHAwZGtpNyJ9.xApcEalgtGPF4fQc4to1DA"
     res = requests.get(requestUrl)
-    imageName = str(uuid.uuid4())+'.png'
     with staticfiles_storage.open(os.path.join(django_settings.STATIC_ROOT, imageName), 'wb') as out_file:
         out_file.write(res.content)
     del res

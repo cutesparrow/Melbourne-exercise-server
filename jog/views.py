@@ -107,7 +107,9 @@ def customizedCards(request):
     mid = []
     high = []
     for i in resultList:
-        if i[4] == 'no':
+        if i is None:
+            continue
+        elif i[4] == 'no':
             no.append(i)
         elif i[4] == 'low':
             low.append(i)
@@ -116,11 +118,13 @@ def customizedCards(request):
         else:
             high.append(i)
     resultListAll = no + low + mid + high
-    id = 0
     resultList = []
     for i in resultListAll:
-        if i[5] not in [j[5] for j in resultList]:
-            resultList.append(i[0:5])
+        if i is not None:
+            if i[5] not in [j[5] for j in resultList]:
+                resultList.append(i)
+
+    id = 0
     for i in resultList:
         if i is None:
             continue
@@ -152,7 +156,7 @@ def getRouteFromAPI(input):
         # print(e)
         return
     realDistance = round(int(json.loads(res.text)['paths'][0]['distance'])/1000,1)
-    if abs(realDistance - length) > length/8 + 1:
+    if abs(realDistance - distance/1000) > distance/8000 + 1:
         return None
     time = round(json.loads(res.text)['paths'][0]['time']/60000,1)
     instructionsList = []

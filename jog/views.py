@@ -247,7 +247,7 @@ def getMapImage(input):
     path = input[0]
     lat = input[1]
     long = input[2]
-    name = input[3]
+    name = input[3].replace(' ','')
     imageName = str(name)+'mapImage.png'
     if staticfiles_storage.exists(os.path.join(django_settings.STATIC_ROOT, imageName)):
         return imageName

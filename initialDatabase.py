@@ -110,7 +110,8 @@ def load_popular_jogging_path_into_database():
                                   ,postcode=i['postcode']
                                   ,latitude=i['latitude']
                                   ,longitude=i['longitude']
-                                  ,detail_text=i['detail_text'])
+                                  ,detail_text=i['detail_text']
+                                  ,safety_tips=i['safety_tips'])
         path.save()
 
 def initial():

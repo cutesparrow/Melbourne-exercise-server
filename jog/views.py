@@ -241,9 +241,8 @@ def getPopularCardList(allPopularPath,userLat,userLong):
     for i in range(len(allPopularPath)):
         distanceToUser = round(haversine(float(userLong),float(userLat),float(allPopularPath[i].longitude),float(allPopularPath[i].latitude)),1)
         imageName = resultList[i]
-        card = PopularCard(id=i,name=allPopularPath[i].name,map=imageName,distance=distanceToUser,longth=allPopularPath[i].distance,elevation=allPopularPath[i].elevation,background=allPopularPath[i].background,intruduction=allPopularPath[i].intruduction,suburb=allPopularPath[i].suburb,postcode=allPopularPath[i].postcode,detail_text=allPopularPath[i].detail_text,lat=allPopularPath[i].latitude,long=allPopularPath[i].longitude)
+        card = PopularCard(id=i,name=allPopularPath[i].name,map=imageName,distance=distanceToUser,longth=allPopularPath[i].distance,elevation=allPopularPath[i].elevation,background=allPopularPath[i].background,intruduction=allPopularPath[i].intruduction,suburb=allPopularPath[i].suburb,postcode=allPopularPath[i].postcode,detail_text=allPopularPath[i].detail_text,lat=allPopularPath[i].latitude,long=allPopularPath[i].longitude,safety_tips=allPopularPath[i].safety_tips)
         popularPathList.append(card)
-
 
     return popularPathList
 
@@ -352,7 +351,7 @@ class CustomizedCard:
         self.instructions = instructions
 
 class PopularCard:
-    def __init__(self,id,name,map,lat,long,distance,longth,elevation,background,intruduction,suburb,postcode,detail_text):
+    def __init__(self,id,name,map,lat,long,distance,longth,elevation,background,intruduction,suburb,postcode,detail_text,safety_tips):
         self.id = id
         self.name = name
         self.map = map
@@ -366,6 +365,7 @@ class PopularCard:
         self.latitude = lat
         self.longitude = long
         self.detail_text = detail_text
+        self.safety_tips = safety_tips
 
 class Coordinate:
     def __init__(self,latitude,longitude):

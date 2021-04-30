@@ -43,6 +43,15 @@ def safePolicy(request):
         result_list.append(safe_policy)
     return HttpResponse(json.dumps([i.__dict__ for i in result_list]),content_type='application/json')
 
+@require_GET
+@valid_request
+def aboutCovid19(request):
+    about_covid_list = list(AboutCovid.objects.all())
+    result_list = []
+    for i in about_covid_list:
+        about_covid = AboutCovidResponse(id=i.id,title=i.title,content=i.content,background=i.background,color=i.color)
+        result_list.append(about_covid)
+    return HttpResponse(json.dumps([i.__dict__ for i in result_list]),content_type='application/json')
 
 @require_GET
 @valid_request
@@ -67,6 +76,14 @@ class SafePolicy:
         self.date = date
         self.title = title
         self.content = content
+
+class AboutCovidResponse:
+    def __init__(self,id,title,content,background,color):
+        self.id = id
+        self.title = title
+        self.content = content
+        self.background = background
+        self.color = color
 
 @require_GET
 @valid_request

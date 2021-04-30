@@ -48,6 +48,11 @@ class SafetyPolicy(models.Model):
     title = models.CharField(max_length=50)
     content = models.CharField(max_length=1000)
 
+class AboutCovid(models.Model):
+    title = models.CharField(max_length=30)
+    content = models.TextField()
+    background = models.CharField(max_length=50)
+    color = models.CharField(max_length=20)
 
 class Park(models.Model):
     park_name = models.CharField(max_length=30)

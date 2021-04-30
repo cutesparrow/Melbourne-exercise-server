@@ -47,6 +47,12 @@ def load_safety_policy_into_database():
         safety_policy = SafetyPolicy(start_date=i['start_date'],title=i['title'],content=i['content'])
         safety_policy.save()
 
+def load_about_covid_into_database():
+    about_covid_list = load_csv_file(filename='./resources/about_covid.csv')
+    for i in about_covid_list:
+        about_covid = AboutCovid(title=i['title'],content=i['content'],background=i['background'],color=i['color'])
+        about_covid.save()
+
 def load_exercise_benefits_into_database():
     exercise_benefits = load_csv_file(filename='./resources/exercise_benefit.csv')
     for i in exercise_benefits:
@@ -121,6 +127,7 @@ def initial():
     store_sensor_day_data()
     load_exercise_into_database()
     load_exercise_tips_into_database()
+    load_about_covid_into_database()
     load_safety_policy_into_database()
     load_safety_tips_into_database()
     load_exercise_benefits_into_database()

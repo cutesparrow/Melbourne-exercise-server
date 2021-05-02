@@ -140,7 +140,7 @@ def getRouteFromAPI(input):
     seed = input[3]
     imageName = input[4]
     type = input[5]
-    baseURL = "https://graphhopper.com/api/1/route"
+    baseURL = "http://localhost:8989/route"
     point = (lat,long)
     algorithm = 'round_trip'
     distance = length

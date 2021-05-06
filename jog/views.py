@@ -128,7 +128,7 @@ def customizedCards(request):
     for i in resultList:
         if i is None:
             continue
-        responseList.append(CustomizedCard(id=id,image=i[3],distance=i[1],risk=i[4],time=str(i[2])+' min',instructions=i[0]))
+        responseList.append(CustomizedCard(id=id,image=i[3],distance=i[1],risk=i[4],time=str(i[2])+' min',instructions=i[0],polyline=i[6]))
         id += 1
 
     return HttpResponse(json.dumps([i.__dict__ for i in responseList]),content_type='application/json')
@@ -171,6 +171,7 @@ def getRouteFromAPI(input):
         risk = 'low'
         color = '0061ff'
     encodedCoordinatesList = encoding.encode_polyline(coordinatesList)
+    polyline = encodedCoordinatesList
     encodedCoordinatesList = urllib.parse.quote(encodedCoordinatesList,safe='')
     requestUrl = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s+ff2600("+str(long)+","+str(lat)+"),"+"path-3+"+color+"-0.85(" + encodedCoordinatesList +")/auto/300x200@2x?access_token=pk.eyJ1IjoiZ2FveXVzaGkwMDEiLCJhIjoiY2tubGM0cmV1MGY5aTJucGVtMHAwZGtpNyJ9.xApcEalgtGPF4fQc4to1DA"
     res = requests.get(requestUrl)
@@ -179,7 +180,7 @@ def getRouteFromAPI(input):
     with staticfiles_storage.open(os.path.join(django_settings.STATIC_ROOT, imageName), 'wb') as out_file:
         out_file.write(res.content)
     del res
-    return instructionsList,realDistance,time,imageName,risk,encodedCoordinatesList
+    return instructionsList,realDistance,time,imageName,risk,encodedCoordinatesList,polyline
 
 def getColor(risk):
     if risk == 'high':
@@ -342,13 +343,14 @@ class ResponseSensorSituation:
             return 'high'
 
 class CustomizedCard:
-    def __init__(self,id,image,distance,risk,time,instructions):
+    def __init__(self,id,image,distance,risk,time,instructions,polyline):
         self.id = id
         self.image = image
         self.distance = distance
         self.risk = risk
         self.time = time
         self.instructions = instructions
+        self.polyline = polyline
 
 class PopularCard:
     def __init__(self,id,name,map,lat,long,distance,longth,elevation,background,intruduction,suburb,postcode,detail_text,safety_tips):

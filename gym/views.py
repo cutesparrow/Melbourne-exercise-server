@@ -108,6 +108,7 @@ class ResponseGym:
         self.star = False
         self.address = Gym.gym_address
         self.classType = Gym.gym_class
+        self.gymTime = GymTime(start=Gym.gym_start,close=Gym.gym_close).__dict__
 
 def findAllRelatedSensor(gym_lat,gym_long,user_lat,user_long):
 

@@ -14,6 +14,26 @@ class WeekDay(Enum):
     saturday = "Sat"
     sunday = "Sun"
 # Create your models here.
+class GymTime:
+    def __init__(self,start,close):
+        start_time = eval(start)
+        close_time = eval(close)
+        self.monday_start = start_time['monday']
+        self.tuesday_start = start_time['tuesday']
+        self.wednesday_start = start_time['wednesday']
+        self.thursday_start = start_time['thursday']
+        self.friday_start = start_time['friday']
+        self.saturday_start = start_time['saturday']
+        self.sunday_start = start_time['sunday']
+        self.monday_close = close_time['monday']
+        self.tuesday_close = close_time['tuesday']
+        self.wednesday_close = close_time['wednesday']
+        self.thursday_close = close_time['thursday']
+        self.friday_close = close_time['friday']
+        self.saturday_close = close_time['saturday']
+        self.sunday_close = close_time['sunday']
+
+
 class Gym(models.Model):
     gym_name = models.CharField(max_length=30)
     gym_address = models.CharField(max_length=80)
@@ -21,6 +41,9 @@ class Gym(models.Model):
     gym_coordinate_lat = models.FloatField()
     gym_coordinate_long = models.FloatField()
     gym_class = models.CharField(max_length=40)
+    gym_start = models.TextField()
+    gym_close = models.TextField()
+
     def __str__(self):
         return self.gym_name
 

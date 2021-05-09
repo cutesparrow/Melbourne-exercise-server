@@ -3,3 +3,4 @@ django-crontab
 pandas
 sodapy
 polyline
+mapbox

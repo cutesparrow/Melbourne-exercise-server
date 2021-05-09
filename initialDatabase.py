@@ -10,7 +10,7 @@ def load_initial_gym_data():
     pk = 1
     for i in fitness_list:
         Images = eval(i['Images'])
-        G = Gym(gym_name=i['Name'],gym_address=i['Address']+' '+i['Suburb']+' '+i['State']+' '+str(i['Postcode']),gym_limitation=i['Limitation'],gym_coordinate_lat=i['Latitude'],gym_coordinate_long=i['Longitude'],gym_class=i['Class'])
+        G = Gym(gym_name=i['Name'],gym_address=i['Address']+' '+i['Suburb']+' '+i['State']+' '+str(i['Postcode']),gym_limitation=i['Limitation'],gym_coordinate_lat=i['Latitude'],gym_coordinate_long=i['Longitude'],gym_class=i['Class'],gym_start=i['Start_time'],gym_close=i['End_time'])
         G.save()
         G = Gym.objects.get(pk=pk)
         pk+=1

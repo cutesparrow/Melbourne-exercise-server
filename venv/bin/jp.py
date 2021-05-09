@@ -1,4 +1,4 @@
-#!/Users/gaoyushi/Documents/IE/server/venv/bin/python
+#!/Users/gaoyushi/Documents/IE/server/venv/bin/python3
 
 import sys
 import json

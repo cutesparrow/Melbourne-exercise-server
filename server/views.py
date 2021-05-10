@@ -35,6 +35,24 @@ def file_name_listdir(file_dir):
 
 @require_GET
 @valid_request
+def getClassedExerciseTips(request):
+    exerciseTipsList = list(ExerciseClassedTip.objects.all())
+    result_list = []
+    id = 0
+    for i in exerciseTipsList:
+        tip = ResponseTip(id=id,content=i.content,tipClass=i.tipClass)
+        result_list.append(tip)
+        id += 1
+    return HttpResponse(json.dumps([i.__dict__ for i in result_list]),content_type='application/json')
+
+class ResponseTip:
+    def __init__(self,content,id,tipClass):
+        self.content = content
+        self.id = id
+        self.tipClass = tipClass
+
+@require_GET
+@valid_request
 def safePolicy(request):
     safe_policy_list = list(SafetyPolicy.objects.all())
     result_list = []

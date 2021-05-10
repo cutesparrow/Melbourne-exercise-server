@@ -23,7 +23,11 @@ def load_exercise_into_database():
         E = Exercise(exercise_name=i)
         E.save()
 
-
+def load_exerciseClassedTip_into_database():
+    exercise_tips_list = load_csv_file(filename="./resources/effective_exercise_tips.csv")
+    for i in exercise_tips_list:
+        tip = ExerciseClassedTip(content=i['Content'],tipClass=i['Category'])
+        tip.save()
 
 
 
@@ -103,6 +107,8 @@ def store_sensor_day_data():
         for j in weekdays:
             sensor.daysensor_set.create(day = j,hours = 24)
 
+
+
 def load_popular_jogging_path_into_database():
     popular_jogging_path_list = load_csv_file(filename='./resources/popular routes.csv')
     for i in popular_jogging_path_list:
@@ -132,4 +138,5 @@ def initial():
     load_safety_tips_into_database()
     load_exercise_benefits_into_database()
     load_popular_jogging_path_into_database()
+    load_exerciseClassedTip_into_database()
 

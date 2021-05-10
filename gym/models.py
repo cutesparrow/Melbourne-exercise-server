@@ -77,6 +77,11 @@ class AboutCovid(models.Model):
     background = models.CharField(max_length=50)
     color = models.CharField(max_length=20)
 
+
+class ExerciseClassedTip(models.Model):
+    content = models.TextField()
+    tipClass = models.TextField()
+
 class Park(models.Model):
     park_name = models.CharField(max_length=30)
     park_address = models.CharField(max_length=80)

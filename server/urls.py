@@ -28,4 +28,5 @@ urlpatterns = [
     path('',views.homePage,name = 'home'),
     path('showInformation/',views.getShowsInformation,name='getshowinformation'),
     path('aboutCovid/',views.aboutCovid19,name='aboutCovid'),
+    path('classedexerciseTips/',views.getClassedExerciseTips,name='classedTips')
 ]

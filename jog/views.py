@@ -242,7 +242,7 @@ def getPopularCardList(allPopularPath,userLat,userLong):
     for i in range(len(allPopularPath)):
         distanceToUser = round(haversine(float(userLong),float(userLat),float(allPopularPath[i].longitude),float(allPopularPath[i].latitude)),1)
         imageName = resultList[i]
-        card = PopularCard(id=i,name=allPopularPath[i].name,map=imageName,distance=distanceToUser,longth=allPopularPath[i].distance,elevation=allPopularPath[i].elevation,background=allPopularPath[i].background,intruduction=allPopularPath[i].intruduction,suburb=allPopularPath[i].suburb,postcode=allPopularPath[i].postcode,detail_text=allPopularPath[i].detail_text,lat=allPopularPath[i].latitude,long=allPopularPath[i].longitude,safety_tips=allPopularPath[i].safety_tips)
+        card = PopularCard(id=i,name=allPopularPath[i].name,map=imageName,distance=distanceToUser,longth=allPopularPath[i].distance,elevation=allPopularPath[i].elevation,background=allPopularPath[i].background,intruduction=allPopularPath[i].intruduction,suburb=allPopularPath[i].suburb,postcode=allPopularPath[i].postcode,detail_text=allPopularPath[i].detail_text,lat=allPopularPath[i].latitude,long=allPopularPath[i].longitude,safety_tips=allPopularPath[i].safety_tips,images=allPopularPath[i].images)
         popularPathList.append(card)
 
     return popularPathList
@@ -353,7 +353,7 @@ class CustomizedCard:
         self.polyline = polyline
 
 class PopularCard:
-    def __init__(self,id,name,map,lat,long,distance,longth,elevation,background,intruduction,suburb,postcode,detail_text,safety_tips):
+    def __init__(self,id,name,map,lat,long,distance,longth,elevation,background,intruduction,suburb,postcode,detail_text,safety_tips,images):
         self.id = id
         self.name = name
         self.map = map
@@ -368,6 +368,7 @@ class PopularCard:
         self.longitude = long
         self.detail_text = detail_text
         self.safety_tips = safety_tips
+        self.images = [i for i in eval(images)]
 
 class Coordinate:
     def __init__(self,latitude,longitude):

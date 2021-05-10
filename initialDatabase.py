@@ -117,7 +117,7 @@ def load_popular_jogging_path_into_database():
                                   ,latitude=i['latitude']
                                   ,longitude=i['longitude']
                                   ,detail_text=i['detail_text']
-                                  ,safety_tips=i['safety_tips'])
+                                  ,safety_tips=i['safety_tips'],images=i['images'])
         path.save()
 
 def initial():

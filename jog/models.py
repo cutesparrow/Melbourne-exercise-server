@@ -18,3 +18,4 @@ class PopularJoggingPath(models.Model):
     longitude = models.FloatField()
     detail_text = models.TextField()
     safety_tips = models.TextField()
+    images = models.TextField()

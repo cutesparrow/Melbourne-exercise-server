@@ -128,7 +128,7 @@ def customizedCards(request):
     for i in resultList:
         if i is None:
             continue
-        responseList.append(CustomizedCard(id=id,image=i[3],distance=i[1],risk=i[4],time=str(i[2])+' min',instructions=i[0],polyline=i[6]))
+        responseList.append(CustomizedCard(id=id,image=i[3],distance=i[1],risk=i[4],time=str(i[2])+' MINS',instructions=i[0],polyline=i[6]))
         id += 1
 
     return HttpResponse(json.dumps([i.__dict__ for i in responseList]),content_type='application/json')
